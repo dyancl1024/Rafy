@@ -183,12 +183,19 @@ namespace Rafy.Domain.ORM.BatchSubmit.SqlServer
                 );
             bulkCopy.DestinationTableName = meta.Table.Name;
             bulkCopy.BatchSize = table.Rows.Count;
+            bulkCopy.BulkCopyTimeout = 10 * 60;
 
             try
             {
                 this.SetMappings(bulkCopy.ColumnMappings, meta.Table);
 
+#if NET45
                 bulkCopy.WriteToServer(table);
+#endif
+#if NETSTANDARD2_0
+                var reader = new DataTableReader(table);
+                bulkCopy.WriteToServer(reader);
+#endif
             }
             finally
             {

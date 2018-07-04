@@ -1,178 +1,37 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7A57E885-049B-4145-A446-44245A8DF483}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RafyUnitTest.ClientTest</RootNamespace>
-    <AssemblyName>RafyUnitTest.ClientTest</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
-    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
-    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
-    <IsCodedUITest>False</IsCodedUITest>
-    <TestProjectType>UnitTest</TestProjectType>
-    <TargetFrameworkProfile />
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
-  </PropertyGroup>
-  <PropertyGroup>
-    <AssemblyOriginatorKeyFile>Hxy Key.snk</AssemblyOriginatorKeyFile>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\MySql.Data.6.9.9\lib\net45\MySql.Data.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Oracle.ManagedDataAccess">
-      <HintPath>..\..\packages\Oracle.ManagedDataAccess.12.1.022\lib\net40\Oracle.ManagedDataAccess.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.SqlServer.Compact.4.0.8876.1\lib\net40\System.Data.SqlServerCe.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Web" />
-  </ItemGroup>
-  <Choose>
-    <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
-      <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-      </ItemGroup>
-    </When>
-    <Otherwise>
-      <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
-      </ItemGroup>
-    </Otherwise>
-  </Choose>
-  <ItemGroup>
-    <Compile Include="ClientTestHelper.cs" />
-    <Compile Include="RafyClient\CacheTest_Client.cs" />
-    <Compile Include="RafyClient\EntityTest_Client.cs" />
-    <Compile Include="RafyClient\EnvTest_UnityContainer.cs" />
-    <Compile Include="TestLocalApp.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Rafy\Plugins\Rafy.ComponentModel.UnityAdapter\Rafy.ComponentModel.UnityAdapter.csproj">
-      <Project>{be8c3cd6-f314-453d-a0ed-fcfec0deadbc}</Project>
-      <Name>Rafy.ComponentModel.UnityAdapter</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Rafy\Plugins\Rafy.Domain.EntityPhantom\Rafy.Domain.EntityPhantom.csproj">
-      <Project>{0b6df92b-0248-422d-a9c2-1604d4cb7bc9}</Project>
-      <Name>Rafy.Domain.EntityPhantom</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Rafy\Plugins\Rafy.Domain.Stamp\Rafy.Domain.Stamp.csproj">
-      <Project>{6a13f732-1658-4636-8113-338b398cf328}</Project>
-      <Name>Rafy.Domain.Stamp</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Rafy\Plugins\Rafy.DiskCaching\Rafy.DiskCaching.csproj">
-      <Project>{a2f2f4e8-a6ec-4856-a1da-bd4eb783041d}</Project>
-      <Name>Rafy.DiskCaching</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Rafy\Rafy\Rafy.csproj">
-      <Project>{966a5bf2-d690-426b-ad68-ad868bb8f855}</Project>
-      <Name>Rafy</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Rafy\WPF\Rafy.WPF.Controls\Rafy.WPF.Controls.csproj">
-      <Project>{9107e3a0-e18a-49b5-a214-daccd5fe8723}</Project>
-      <Name>Rafy.WPF.Controls</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Rafy\WPF\Rafy.WPF\Rafy.WPF.csproj">
-      <Project>{84399e4e-cc81-4b1f-9953-586b25b29792}</Project>
-      <Name>Rafy.WPF</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Rafy.UnitTest.DataProvider\Rafy.UnitTest.DataProvider.csproj">
-      <Project>{df5e92a5-b32f-41ae-b880-14069d4fe7f4}</Project>
-      <Name>Rafy.UnitTest.DataProvider</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Rafy.UnitTest.IDataProvider\Rafy.UnitTest.IDataProvider.csproj">
-      <Project>{c13c7dfe-3bdf-456e-8b7b-01ad483d7396}</Project>
-      <Name>Rafy.UnitTest.IDataProvider</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Rafy.UnitTest.Repository\Rafy.UnitTest.Repository.csproj">
-      <Project>{03e2413d-ec73-44f1-a0d3-366c3892700a}</Project>
-      <Name>Rafy.UnitTest.Repository</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Rafy.UnitTest.WPF\Rafy.UnitTest.WPF.csproj">
-      <Project>{f1e214f9-7c72-4c52-b262-a41ce23a3993}</Project>
-      <Name>Rafy.UnitTest.WPF</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Rafy.UnitTest\Rafy.UnitTest.csproj">
-      <Project>{d226414c-37f6-4618-8b91-7e80e7d2c42e}</Project>
-      <Name>Rafy.UnitTest</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Hxy Key.snk" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="_Read me.txt" />
-  </ItemGroup>
-  <Choose>
-    <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
-      <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.CodedUITestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-          <Private>False</Private>
-        </Reference>
-        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-          <Private>False</Private>
-        </Reference>
-        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Extension, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-          <Private>False</Private>
-        </Reference>
-        <Reference Include="Microsoft.VisualStudio.TestTools.UITesting, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-          <Private>False</Private>
-        </Reference>
-      </ItemGroup>
-    </When>
-  </Choose>
-  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>
-    if not exist "$(TargetDir)x86" md "$(TargetDir)x86"
-    xcopy /s /y "$(SolutionDir)packages\Microsoft.SqlServer.Compact.4.0.8876.1\NativeBinaries\x86\*.*" "$(TargetDir)x86"
-    if not exist "$(TargetDir)amd64" md "$(TargetDir)amd64"
-    xcopy /s /y "$(SolutionDir)packages\Microsoft.SqlServer.Compact.4.0.8876.1\NativeBinaries\amd64\*.*" "$(TargetDir)amd64"</PostBuildEvent>
-  </PropertyGroup>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFrameworks>net45</TargetFrameworks>
+        <IsPackable>false</IsPackable>
+        <SignAssembly>true</SignAssembly>
+        <AssemblyOriginatorKeyFile>Hxy Key.snk</AssemblyOriginatorKeyFile>
+    </PropertyGroup>
+    
+    <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net45|AnyCPU'">
+        <DefineConstants>DEBUG;NET45</DefineConstants>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0" />
+        <PackageReference Include="MSTest.TestAdapter" Version="1.1.18" />
+        <PackageReference Include="MSTest.TestFramework" Version="1.1.18" />
+    </ItemGroup>
+
+    <ItemGroup Condition="'$(TargetFramework)' == 'net45'">
+        <Reference Include="System.Security" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\Rafy\Plugins\Rafy.ComponentModel.UnityAdapter\Rafy.ComponentModel.UnityAdapter.csproj" />
+        <ProjectReference Include="..\..\Rafy\Plugins\Rafy.DiskCaching\Rafy.DiskCaching.csproj" />
+        <ProjectReference Include="..\..\Rafy\Plugins\Rafy.Domain.EntityPhantom\Rafy.Domain.EntityPhantom.csproj" />
+        <ProjectReference Include="..\..\Rafy\Plugins\Rafy.Domain.Stamp\Rafy.Domain.Stamp.csproj" />
+        <ProjectReference Include="..\..\Rafy\Rafy\Rafy.csproj" />
+        <ProjectReference Include="..\..\Rafy\WPF\Rafy.WPF.Controls\Rafy.WPF.Controls.csproj" />
+        <ProjectReference Include="..\..\Rafy\WPF\Rafy.WPF\Rafy.WPF.csproj" />
+        <ProjectReference Include="..\Rafy.UnitTest.DataProvider\Rafy.UnitTest.DataProvider.csproj" />
+        <ProjectReference Include="..\Rafy.UnitTest.IDataProvider\Rafy.UnitTest.IDataProvider.csproj" />
+        <ProjectReference Include="..\Rafy.UnitTest.Repository\Rafy.UnitTest.Repository.csproj" />
+        <ProjectReference Include="..\Rafy.UnitTest.WPF\Rafy.UnitTest.WPF.csproj" />
+        <ProjectReference Include="..\Rafy.UnitTest\Rafy.UnitTest.csproj" />
+    </ItemGroup>
 </Project>
